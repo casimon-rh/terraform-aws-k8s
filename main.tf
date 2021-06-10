@@ -13,7 +13,8 @@ provider "aws" {
 
 module "nodes" {
   source = "./instance"
-  count = length(var.k8s_cluster)
+  # for tipos
+  count = length(var.k8s_cluster) 
   instance_ami = var.aws_ami_id
   instance_replicas = var.k8s_cluster[count.index].replicas
   instance_type = var.k8s_cluster[count.index].type
@@ -22,4 +23,5 @@ module "nodes" {
   instance_tag_name = var.aws_tag_name
   instance_key_pair = var.aws_key_pair
   instance_role = var.k8s_cluster[count.index].role
+  instance_vol_size = var.k8s_cluster[count.index].volsize
 }

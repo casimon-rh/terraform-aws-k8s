@@ -23,3 +23,6 @@ variable "instance_key_pair" {
 variable "instance_role" {
   type = string
 }
+variable "instance_vol_size" {
+  type = number
+}

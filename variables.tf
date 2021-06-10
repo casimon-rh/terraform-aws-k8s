@@ -25,23 +25,26 @@ variable "aws_region_name" {
 
 variable "k8s_cluster" {
   type = list(object({
-    role=string, replicas=number, type=string
+    role=string, replicas=number, type=string, volsize=number
   }))
   default = [
     {
       role = "worker",
       replicas = 2,
-      type = "m5a.large"
+      type = "m5a.large",
+      volsize = 80
     },
     {
       role = "control-plane",
       replicas = 3,
-      type = "m5a.large"
+      type = "m5a.large",
+      volsize = 80
     },
     {
       role = "haproxy",
       replicas = 1,
-      type = "t2.micro"
+      type = "t2.micro",
+      volsize = 20
     }
   ]
 }
